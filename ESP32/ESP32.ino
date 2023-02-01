@@ -5,8 +5,8 @@
 #include <ESP_Mail_Client.h>
 #include <ESP32_Servo.h>
 
-const char* ssid = "dogwaterdogtamer"; //Your wifi ssid
-const char* password = "yeppers69"; //Your wifi password
+const char* ssid = "<>"; //Your wifi ssid
+const char* password = "<>"; //Your wifi password
 
 String RECIPIENT_EMAIL = "";
 String OTP_Hash = "";
@@ -17,8 +17,6 @@ String OTP_String = "";
 
 #define AUTHOR_EMAIL "<your email>" //email
 #define AUTHOR_PASSWORD "<your password>" //email password
-
-//unsigned long dataMillis = 0;
 
 #define RED_LED 18    // ESP32 pin GIOP18, connected to red RGB
 #define GREEN_LED 19  // ESP32 pin GIOP19, connected to green RGB
@@ -125,14 +123,10 @@ void firebase_setup() {
   config.api_key = API_KEY;
   /* Assign the RTDB URL (required) */
   /*===================Authentication============================= */
-  //config.cert.file = "/gsr1.pem";
-  //config.cert.file_storage = mem_storage_type_flash;  // or mem_storage_type_sd
-  //config.token_status_callback = tokenStatusCallback;
 
   auth.user.email = "<user auth email>"; //set user email to authenticate
   auth.user.password = "<user auth password>"; //set user password to authenticate
-  //config.service_account.json.path = "/study-pod-firebase.json";
-  //config.service_account.json.storage_type = mem_storage_type_flash; // or mem_storage_type_sd
+
   auth.token.uid.clear();
   //==================================================
   config.database_url = DATABASE_URL;
@@ -183,14 +177,10 @@ void read_string_recipient() {
 
 void firebase_otp_send() {
   Serial.println("Setting value status...");
-  //Serial.printf("Set int... %s\n", Firebase.RTDB.setInt(&fbdo, F("connections/value4"), OTP_value) ? "ok" : fbdo.errorReason().c_str());
-  //itoa(OTP_value, OTP_String, 10);
   OTP_String = String(OTP_value);
-  //const char* OTP_Str = OTP_String.c_str();
   char *OTP_Str = new char[OTP_String.length() + 1];
   strcpy(OTP_Str, OTP_String.c_str());
   OTP_Hash = hashing256(OTP_Str);
-  //Serial.printf("Set String... %s\n", Firebase.RTDB.setString(&fbdo, F("connections/value4"), OTP_Hash) ? "ok" : fbdo.errorReason().c_str());
   Serial.printf("Set string... %s\n", Firebase.RTDB.setString(&fbdo, F("/connections/value4"), OTP_Hash) ? "ok" : fbdo.errorReason().c_str());
   delete [] OTP_Str;
 }
