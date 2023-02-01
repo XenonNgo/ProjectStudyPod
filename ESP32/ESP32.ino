@@ -3,7 +3,7 @@
 #include <Firebase_ESP_Client.h>
 #include <addons/TokenHelper.h>
 #include <ESP_Mail_Client.h>
-#include <ESP32_Servo.h>
+#include <ESP32Servo.h>
 
 const char* ssid = "<>"; //Your wifi ssid
 const char* password = "<>"; //Your wifi password
@@ -59,7 +59,8 @@ void setup() {
     Serial.println("Connecting to WiFi..");
   }
   Serial.println("Connected to the WiFi network");
-  //dataMillis = millis();
+
+  servoMotor.attach(SERVO_PIN);
   firebase_setup();
 }
 
@@ -67,7 +68,7 @@ void loop() {
   // put your main code here, to run repeatedly:
   read_value();
   if (OTP_Check) {
-    if (valueStatus == 1) { //Check for user OTP
+    if (valueStatus == 1) {  //Check for user OTP
       OTP_value = random(100000, 999999);
       read_string_recipient();
       firebase_otp_send();
@@ -77,45 +78,48 @@ void loop() {
       startMillis = millis();
     }
   }
-  
-  if ((OTP_Check == false) && (valueStatus == 1)){ //Check if user is logged in 
+
+  if ((OTP_Check == false) && (valueStatus == 1)) {  //Check if user is logged in
     getDoorStatus();
-    if ((doorStatus == 1) && (first_check == true)){ //Check if user opening door for first time
+    if (doorStatus == 1) {  //&& (first_check == true)){ //Check if user opening door for first time
+      Serial.println("Opening Door");
       door_open();
       currentMillis = millis();
-      if (startMillis - currentMillis >= period){ //check if more than 1 min
+      delay(30000); //check if more than 1 min
+      Serial.println("Closing Door");
       door_close();
       first_check = false;
-      startMillis = currentMillis = 0;
-      }
-    }
+      startMillis = currentMillis;
+      /*
     if ((doorStatus == 1) && (first_check == false)){ // open door if prompted
       door_open();
     }
-    if (doorStatus == 0){ //check if user closes door
-      door_close();
-      first_check = false;
+    */
+      if (doorStatus == 0) {  //check if user closes door
+        door_close();
+        first_check = false;
+      }
     }
-  }
-  
-  if (valueStatus == 0) {
-    OTP_Check = true;
-    OTP_value = 000000;
-  }
-  delay(5000);
-}
 
+    if (valueStatus == 0) {
+      OTP_Check = true;
+      OTP_value = 000000;
+    }
+    delay(5000);
+  }
+}
 
 void door_open() {
   digitalWrite(RED_LED, LOW);     //OFF Red LED
   digitalWrite(GREEN_LED, HIGH);  //ON Green LED
-  servoMotor.write(90);             //Motor move to 90 degree/open the door
+  servoMotor.write(90);           //Motor move to 90 degree/open the door
 }
 
 void door_close() {
   digitalWrite(RED_LED, HIGH);   //On Red LED
   digitalWrite(GREEN_LED, LOW);  //Off Green LED
-  servoMotor.write(0); //Motor move to 0 degree / close door
+  servoMotor.write(0);           //Motor move to 0 degree / close door
+  Serial.printf("Set int... %s\n", Firebase.RTDB.setInt(&fbdo, F("door/int"), 0) ? "ok" : fbdo.errorReason().c_str());
 }
 
 void firebase_setup() {
