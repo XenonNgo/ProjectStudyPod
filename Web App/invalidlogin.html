@@ -30,7 +30,7 @@
         if (localStorage.getItem("invalidLogin_Timer")) {
             var invalidLogin_Timer = localStorage.getItem("invalidLogin_Timer");
         } else {
-            var invalidLogin_Timer = 300; //5minutes
+            var invalidLogin_Timer = 300;
         }
 
         var minutes = parseInt(invalidLogin_Timer / 60);
@@ -45,7 +45,6 @@
 
             document.getElementById("total-time-left").innerHTML = "Time Left: " + minutes + " minutes " + seconds + " seconds";
             if (invalidLogin_Timer <= 0) {
-                //localStorage.clear("invalidLogin_Timer");
                 window.location.replace("./index.html");
             } else {
                 invalidLogin_Timer = invalidLogin_Timer - 1;
