@@ -1,5 +1,5 @@
-import { auth, signInWithEmailAndPassword, setPersistence, browserSessionPersistence, signOut } from "./firebase.js";
-import { db, ref, update, increment } from "./firebase.js";
+import { auth, signInWithEmailAndPassword, setPersistence, browserSessionPersistence, signOut } from "./config.js";
+import { db, ref, update, increment } from "./config.js";
 
 var loginAttempts = 5;
 var invalidLogin_Timer = localStorage.getItem("invalidLogin_Timer");
