@@ -1,5 +1,5 @@
-import { auth, onAuthStateChanged, signOut } from "./firebase.js";
-import { db, ref, update, increment, onValue } from "./firebase.js";
+import { auth, onAuthStateChanged, signOut } from "./config.js";
+import { db, ref, update, increment, onValue } from "./config.js";
 
 var value4;
 const value4Ref = ref(db, '/connections/value4');
