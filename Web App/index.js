@@ -113,4 +113,4 @@ checkbox.addEventListener('change', () => {
     } else {
         x.type = "password";
     }
-  });
+});
