@@ -18,8 +18,8 @@ String OTP_String = "";
 #define AUTHOR_EMAIL "<your email>" //email
 #define AUTHOR_PASSWORD "<your password>" //email password
 
-#define RED_LED 18    // ESP32 pin GIOP18, connected to red RGB
-#define GREEN_LED 19  // ESP32 pin GIOP19, connected to green RGB
+#define RED_LED 14    // ESP32 pin GIOP18, connected to red RGB
+#define GREEN_LED 12  // ESP32 pin GIOP19, connected to green RGB
 #define SERVO_PIN 13
 
 #define API_KEY "<Your firebase API Key>"; //Firebase api key
@@ -59,7 +59,8 @@ void setup() {
     Serial.println("Connecting to WiFi..");
   }
   Serial.println("Connected to the WiFi network");
-
+  digitalWrite(RED_LED, HIGH);   //On Red LED
+  digitalWrite(GREEN_LED, LOW);  //Off Green LED
   servoMotor.attach(SERVO_PIN);
   firebase_setup();
 }
@@ -75,46 +76,41 @@ void loop() {
       smtp_setup();
       OTP_Check = false;
       first_check = true;
-      startMillis = millis();
     }
   }
 
   if ((OTP_Check == false) && (valueStatus == 1)) {  //Check if user is logged in
     getDoorStatus();
-    if (doorStatus == 1) {
+    if (doorStatus == 1) {  //&& (first_check == true)){ //Check if user opening door for first time
       Serial.println("Opening Door");
       door_open();
-      currentMillis = millis();
-      delay(30000);
+      delay(30000); //check if more than 1 min
       Serial.println("Closing Door");
       door_close();
       first_check = false;
-      startMillis = currentMillis;
-
-      if (doorStatus == 0) {
+      if (doorStatus == 0) {  //check if user closes door
         door_close();
         first_check = false;
       }
     }
-
     if (valueStatus == 0) {
       OTP_Check = true;
       OTP_value = 000000;
     }
-    delay(5000);
   }
+  delay(5000);
 }
 
 void door_open() {
   digitalWrite(RED_LED, LOW);     //OFF Red LED
   digitalWrite(GREEN_LED, HIGH);  //ON Green LED
-  servoMotor.write(90);           //Motor move to 90 degree/open the door
+  servoMotor.write(0);           //Motor move to 90 degree/open the door
 }
 
 void door_close() {
   digitalWrite(RED_LED, HIGH);   //On Red LED
   digitalWrite(GREEN_LED, LOW);  //Off Green LED
-  servoMotor.write(0);           //Motor move to 0 degree/close door
+  servoMotor.write(90);           //Motor move to 0 degree/close door
   Serial.printf("Set int... %s\n", Firebase.RTDB.setInt(&fbdo, F("door/int"), 0) ? "ok" : fbdo.errorReason().c_str());
 }
 
