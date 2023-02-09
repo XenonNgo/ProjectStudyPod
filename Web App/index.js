@@ -22,7 +22,10 @@ loginbtn.addEventListener('click', (e) => {
                     update(ref(db, 'connections/'), {
                         value1: increment(1),
                         value2: email,
-                        value5: timeout
+                        value3: null,
+                        value4: null,
+                        value5: timeout,
+                        value6: null
                     })
                         .then(() => {
                             update(ref(db, 'users/' + user.uid), {
@@ -113,4 +116,4 @@ checkbox.addEventListener('change', () => {
     } else {
         x.type = "password";
     }
-});
+  });
