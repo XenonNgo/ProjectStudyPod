@@ -60,6 +60,8 @@ function sessionTimedout() {
                 value1: increment(-1),
                 value2: null,
                 value3: null,
+                value4: null,
+                value5: null,
                 value6: null
             })
                 .then(() => {
@@ -96,6 +98,8 @@ logoutbtn.addEventListener('click', (e) => {
                 value1: increment(-1),
                 value2: null,
                 value3: null,
+                value4: null,
+                value5: null,
                 value6: null
             })
                 .then(() => {
