@@ -56,8 +56,10 @@ function otpTimedout() {
             update(ref(db, 'connections/'), {
                 value1: increment(-1),
                 value2: null,
+                value3: null,
                 value4: null,
-                value5: null
+                value5: null,
+                value6: null
             })
                 .then(() => {
                     signOut(auth).then(() => {
@@ -116,8 +118,10 @@ otpbtn.addEventListener('click', (e) => {
                             update(ref(db, 'connections/'), {
                                 value1: increment(-1),
                                 value2: null,
+                                value3: null,
                                 value4: null,
-                                value5: null
+                                value5: null,
+                                value6: null
                             })
                                 .then(() => {
                                     signOut(auth).then(() => {
