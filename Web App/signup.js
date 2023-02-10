@@ -19,33 +19,32 @@ signupbtn.addEventListener('click', (e) => {
                     signInWithEmailAndPassword(auth, email, password)
                         .then((userCredential) => {
                             const user = userCredential.user;
-                            var currentTime = new Date().getTime();
-                            var timeout = currentTime + 180000;
-                            update(ref(db, 'connections/'), {
-                                value1: increment(1),
-                                value2: email,
-                                value3: null,
-                                value4: null,
-                                value5: timeout,
-                                value6: null
+                            update(ref(db, 'users/' + user.uid), {
+                                value1: email,
+                                value2: 3
                             })
                                 .then(() => {
-                                    update(ref(db, 'users/' + user.uid), {
-                                        value1: email,
-                                        value2: 3
+                                    var currentTime = new Date().getTime();
+                                    var timeout = currentTime + 180000;
+                                    update(ref(db, 'connections/'), {
+                                        value1: increment(1),
+                                        value2: email,
+                                        value3: null,
+                                        value4: null,
+                                        value5: timeout,
+                                        value6: null
                                     })
                                         .then(() => {
                                             window.location.replace("./otp.html");
                                         })
                                         .catch((error) => {
+                                            document.getElementById("info").innerHTML = "Create an account to use the pod<br>Currently occupied, please try signing in later.";
+                                            signOut(auth).then(() => {
+                                            }).catch((error) => {
+                                            });
                                         });
                                 })
                                 .catch((error) => {
-                                    document.getElementById("info").innerHTML = "Create an account to use the pod<br>Currently occupied, please try again later.";
-                                    signOut(auth).then(() => {
-                                        window.location.replace("./index.html");
-                                    }).catch((error) => {
-                                    });
                                 });
                         })
                         .catch((error) => {
