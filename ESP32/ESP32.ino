@@ -81,14 +81,14 @@ void loop() {
 
   if ((OTP_Check == false) && (valueStatus == 1)) {  //Check if user is logged in
     getDoorStatus();
-    if (doorStatus == 1) {  //&& (first_check == true)){ //Check if user opening door for first time
+    if (doorStatus == 1) {
       Serial.println("Opening Door");
       door_open();
-      delay(30000); //check if more than 1 min
+      delay(30000);
       Serial.println("Closing Door");
       door_close();
       first_check = false;
-      if (doorStatus == 0) {  //check if user closes door
+      if (doorStatus == 0) {
         door_close();
         first_check = false;
       }
