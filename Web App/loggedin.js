@@ -33,7 +33,6 @@ setTimeout(function sessionTimer() {
     if (minutes < 10) {
         minutes = "0" + minutes;
     }
-
     document.getElementById("total-time-left").innerHTML = "Time Left: " + minutes + " minutes " + seconds + " seconds";
     if (session_Timer <= 0) {
         sessionTimedout();
