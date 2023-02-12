@@ -12,63 +12,62 @@ if (invalidLogin_Timer <= 0) {
 loginbtn.addEventListener('click', (e) => {
     var email = document.getElementById('email').value;
     var password = document.getElementById('password').value;
-    setPersistence(auth, browserSessionPersistence)
-        .then(() => {
-            signInWithEmailAndPassword(auth, email, password)
-                .then((userCredential) => {
-                    const user = userCredential.user;
-                    var currentTime = new Date().getTime();
-                    var timeout = currentTime + 180000;
-                    update(ref(db, 'connections/'), {
-                        value1: increment(1),
-                        value2: email,
-                        value3: null,
-                        value4: null,
-                        value5: timeout,
-                        value6: null
-                    })
-                        .then(() => {
-                            update(ref(db, 'users/' + user.uid), {
-                                value2: 3
-                            })
-                                .then(() => {
-                                    window.location.replace("./otp.html");
-                                })
-                                .catch((error) => {
-                                });
+    digestMessage(password);
+    setTimeout(function () {
+        setPersistence(auth, browserSessionPersistence)
+            .then(() => {
+                signInWithEmailAndPassword(auth, email, hash)
+                    .then((userCredential) => {
+                        const user = userCredential.user;
+                        var currentTime = new Date().getTime();
+                        var timeout = currentTime + 180000;
+                        update(ref(db, 'connections/'), {
+                            value1: increment(1),
+                            value2: email,
+                            value3: null,
+                            value4: null,
+                            value5: timeout,
+                            value6: null
                         })
-                        .catch((error) => {
-                            document.getElementById("info").innerHTML = "Please login to use the pod<br>Currently occupied, please try again later.";
-                            signOut(auth).then(() => {
-                            }).catch((error) => {
+                            .then(() => {
+                                update(ref(db, 'users/' + user.uid), {
+                                    value2: 3
+                                })
+                                    .then(() => {
+                                        window.location.replace("./otp.html");
+                                    })
+                                    .catch((error) => {
+                                    });
+                            })
+                            .catch((error) => {
+                                document.getElementById("info").innerHTML = "Please login to use the pod<br>Currently occupied, please try again later.";
+                                signOut(auth).then(() => {
+                                }).catch((error) => {
+                                });
                             });
-                        });
-                })
-                .catch((error) => {
-                    const errorCode = error.code;
-                    const errorMessage = error.message;
-                    switch (errorCode) {
-                        case 'auth/user-not-found':
-                            document.getElementById("info").innerHTML = "Please login to use the pod<br>Incorrect email or password.";
-                            loginAttempts--;
-                            break;
-                        case 'auth/wrong-password':
-                            document.getElementById("info").innerHTML = "Please login to use the pod<br>Incorrect email or password.";
-                            loginAttempts--;
-                            break;
-                        default:
-                            document.getElementById("info").innerHTML = "Please login to use the pod<br>Something went wrong. Try refreshing the page, or try again later.";
-                            break;
-                    }
-                    if (loginAttempts <= 0) {
-                        window.location.replace("./invalidlogin.html");
-                    }
-                });
-        })
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-        });
+                    })
+                    .catch((error) => {
+                        switch (error.code) {
+                            case 'auth/user-not-found':
+                                document.getElementById("info").innerHTML = "Please login to use the pod<br>Incorrect email or password.";
+                                loginAttempts--;
+                                break;
+                            case 'auth/wrong-password':
+                                document.getElementById("info").innerHTML = "Please login to use the pod<br>Incorrect email or password.";
+                                loginAttempts--;
+                                break;
+                            default:
+                                document.getElementById("info").innerHTML = "Please login to use the pod<br>Something went wrong. Try refreshing the page, or try again later.";
+                                break;
+                        }
+                        if (loginAttempts <= 0) {
+                            window.location.replace("./invalidlogin.html");
+                        }
+                    });
+            })
+            .catch((error) => {
+            });
+    }, 1500)
 });
 
 document.getElementById("loginbtn").disabled = true;
@@ -81,7 +80,6 @@ var passwordValid = false;
 email.addEventListener('input', () => {
     const emailPattern = /[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$/;
     document.getElementById("info").innerHTML = "Please login to use the pod";
-
     if (email.value.match(emailPattern)) {
         emailValid = true;
     } else {
@@ -92,7 +90,6 @@ email.addEventListener('input', () => {
 password.addEventListener('input', () => {
     const passwordPattern = /.{1,}/;
     document.getElementById("info").innerHTML = "Please login to use the pod";
-
     if (password.value.match(passwordPattern)) {
         passwordValid = true;
     } else {
@@ -116,4 +113,13 @@ checkbox.addEventListener('change', () => {
     } else {
         x.type = "password";
     }
-  });
+});
+
+var hash;
+async function digestMessage(message) {
+    const msgUint8 = new TextEncoder().encode(message);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', msgUint8);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray.map((b) => b.toString(16).padStart(2, '0')).join('');
+    hash = hashHex;
+}
