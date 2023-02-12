@@ -30,7 +30,6 @@ setTimeout(function otpTimer() {
     if (minutes < 10) {
         minutes = "0" + minutes;
     }
-
     document.getElementById("total-time-left").innerHTML = "Time Left: " + minutes + " minutes " + seconds + " seconds";
     if (otp_Timer <= 0) {
         otpTimedout();
@@ -154,7 +153,6 @@ var otpValid = false;
 otp.addEventListener('input', () => {
     const otpPattern = /\d{6}/;
     document.getElementById("info").innerHTML = "A verification code has been sent to your email";
-
     if (otp.value.match(otpPattern)) {
         otpValid = true;
     } else {
