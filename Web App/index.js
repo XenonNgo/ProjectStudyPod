@@ -18,33 +18,41 @@ loginbtn.addEventListener('click', (e) => {
             .then(() => {
                 signInWithEmailAndPassword(auth, email, hash)
                     .then((userCredential) => {
-                        const user = userCredential.user;
-                        var currentTime = new Date().getTime();
-                        var timeout = currentTime + 180000;
-                        update(ref(db, 'connections/'), {
-                            value1: increment(1),
-                            value2: email,
-                            value3: null,
-                            value4: null,
-                            value5: timeout,
-                            value6: null
-                        })
-                            .then(() => {
-                                update(ref(db, 'users/' + user.uid), {
-                                    value2: 3
-                                })
-                                    .then(() => {
-                                        window.location.replace("./otp.html");
-                                    })
-                                    .catch((error) => {
-                                    });
+                        if (auth.currentUser.emailVerified) {
+                            const user = userCredential.user;
+                            var currentTime = new Date().getTime();
+                            var timeout = currentTime + 180000;
+                            update(ref(db, 'connections/'), {
+                                value1: increment(1),
+                                value2: email,
+                                value3: null,
+                                value4: null,
+                                value5: timeout,
+                                value6: null
                             })
-                            .catch((error) => {
-                                document.getElementById("info").innerHTML = "Please login to use the pod<br>Currently occupied, please try again later.";
-                                signOut(auth).then(() => {
-                                }).catch((error) => {
+                                .then(() => {
+                                    update(ref(db, 'users/' + user.uid), {
+                                        value1: email,
+                                        value2: 3
+                                    })
+                                        .then(() => {
+                                            window.location.replace("./otp.html");
+                                        })
+                                        .catch((error) => {
+                                        });
+                                })
+                                .catch((error) => {
+                                    document.getElementById("info").innerHTML = "Please login to use the pod<br>Currently occupied, please try again later.";
+                                    signOut(auth).then(() => {
+                                    }).catch((error) => {
+                                    });
                                 });
+                        } else {
+                            document.getElementById("info").innerHTML = "Please login to use the pod<br>Email is not verified.";
+                            signOut(auth).then(() => {
+                            }).catch((error) => {
                             });
+                        }
                     })
                     .catch((error) => {
                         switch (error.code) {
