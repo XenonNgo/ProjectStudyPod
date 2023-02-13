@@ -116,7 +116,12 @@ logoutbtn.addEventListener('click', (e) => {
 
 onAuthStateChanged(auth, (user) => {
     if (user) {
-        const uid = user.uid;
+        if (user.emailVerified) {
+        } else {
+            signOut(auth).then(() => {
+            }).catch((error) => {
+            });
+        }
     } else {
         window.location.replace("./index.html");
     }
