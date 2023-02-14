@@ -36,7 +36,19 @@ loginbtn.addEventListener('click', (e) => {
                                         value2: 3
                                     })
                                         .then(() => {
-                                            window.location.replace("./otp.html");
+                                            var currentTime = new Date().getTime();
+                                            var currentDate = new Date();
+                                            var dateTime = currentDate.getFullYear() + "-" + (currentDate.getMonth() + 1)
+                                                + "-" + currentDate.getDate() + " @ " + ('0' + currentDate.getHours()).slice(-2)
+                                                + ":" + ('0' + currentDate.getMinutes()).slice(-2) + ":" + ('0' + currentDate.getSeconds()).slice(-2);
+                                            update(ref(db, 'users/' + auth.currentUser.uid + '/value3'), {
+                                                [currentTime]: dateTime + " - Initial log in successful."
+                                            })
+                                                .then(() => {
+                                                    window.location.replace("./otp.html");
+                                                })
+                                                .catch((error) => {
+                                                });
                                         })
                                         .catch((error) => {
                                         });
