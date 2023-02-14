@@ -77,9 +77,25 @@ function sessionTimedout() {
 }
 
 unlockbtn.addEventListener('click', (e) => {
+    var currentTime = new Date().getTime();
+    var currentDate = new Date();
+    var dateTime = currentDate.getFullYear() + "-" + (currentDate.getMonth() + 1)
+        + "-" + currentDate.getDate() + " @ " + ('0' + currentDate.getHours()).slice(-2)
+        + ":" + ('0' + currentDate.getMinutes()).slice(-2) + ":" + ('0' + currentDate.getSeconds()).slice(-2);
     update(ref(db, 'door/'), {
         int: 1
     })
+        .then(() => {
+            update(ref(db, 'door/value1'), {
+                [currentTime]: dateTime + " " + auth.currentUser.email + " - Unlocked the door."
+            })
+            document.getElementById("unlockbtn").disabled = true;
+            setTimeout(function () {
+                document.getElementById("unlockbtn").disabled = false;
+            }, 30000);
+        })
+        .catch((error) => {
+        });
 });
 
 logoutbtn.addEventListener('click', (e) => {
@@ -88,9 +104,8 @@ logoutbtn.addEventListener('click', (e) => {
     var dateTime = currentDate.getFullYear() + "-" + (currentDate.getMonth() + 1)
         + "-" + currentDate.getDate() + " @ " + ('0' + currentDate.getHours()).slice(-2)
         + ":" + ('0' + currentDate.getMinutes()).slice(-2) + ":" + ('0' + currentDate.getSeconds()).slice(-2);
-
     update(ref(db, 'users/' + auth.currentUser.uid + '/value3'), {
-        [currentTime]: dateTime + " - Logged out."
+        [currentTime]: dateTime + " - Logged out successfully."
     })
         .then(() => {
             update(ref(db, 'connections/'), {
