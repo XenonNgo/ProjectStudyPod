@@ -51,6 +51,32 @@
 
 <img src="https://github.com/XenonNgo/ProjectStudyPod/blob/main/Firebase/Images/FirebaseRTDB4.png" width="750">
 
+```
+{
+  "rules": {
+    ".read": "auth.uid != null && auth.token.email_verified === true",
+    ".write": "auth.uid != null && auth.token.email_verified === true",
+    "connections": {
+      "value1": {
+        ".validate": "newData.val() <= 1 && newData.val() >= 0"
+      }
+    },
+    "door": {
+      "int": {
+        ".validate": "newData.val() <= 1 && newData.val() >= 0"
+      }
+    },
+    "users": {
+      "$uid": {
+        "value2": {
+          ".validate": "newData.val() <= 3 && newData.val() >= 1"
+        }
+      }
+    }
+  }
+}
+```
+
 <img src="https://github.com/XenonNgo/ProjectStudyPod/blob/main/Firebase/Images/Border.png" width="750">
 
 **Step 4: Setup Web App**
