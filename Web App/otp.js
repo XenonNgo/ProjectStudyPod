@@ -92,7 +92,7 @@ otpbtn.addEventListener('click', (e) => {
             })
                 .then(() => {
                     update(ref(db, 'users/' + auth.currentUser.uid + '/value3'), {
-                        [currentTime]: dateTime + " - Logged in."
+                        [currentTime]: dateTime + " - Logged in successfully."
                     })
                         .then(() => {
                             window.location.replace("./loggedin.html");
