@@ -202,7 +202,7 @@ void smtp_setup() {
   SMTP_Message message;
 
   /* Set the message headers */
-  message.sender.name = "ESP";
+  message.sender.name = "Study Pod";
   message.sender.email = AUTHOR_EMAIL;
   message.subject = "OTP Test Email";
   message.addRecipient("Test", RECIPIENT_EMAIL);
