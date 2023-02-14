@@ -1,3 +1,8 @@
+Used Libraries:
+https://github.com/mobizt/ESP-Mail-Client
+https://github.com/madhephaestus/ESP32Servo
+https://github.com/mobizt/Firebase-ESP-Client
+
 #define AUTHOR_EMAIL "<your email>" //email <br />
 #define AUTHOR_PASSWORD "<your password>" //email password <br />
 
