@@ -37,13 +37,21 @@ We will be using Authentication & Realtime Database for this project.
 
 <img src="https://github.com/XenonNgo/ProjectStudyPod/blob/main/Firebase/Images/FirebaseAuth.png" width="750">
 
+Get started with Authentication.
+
 <img src="https://github.com/XenonNgo/ProjectStudyPod/blob/main/Firebase/Images/Border.png" width="750">
 
 <img src="https://github.com/XenonNgo/ProjectStudyPod/blob/main/Firebase/Images/FirebaseAuth2.png" width="750">
 
+Many methods of authentication are available. <br>
+You may enable other providers for your application if you wish to implement them. <br>
+For this project, we will be using Email/Password for authentication.
+
 <img src="https://github.com/XenonNgo/ProjectStudyPod/blob/main/Firebase/Images/Border.png" width="750">
 
 <img src="https://github.com/XenonNgo/ProjectStudyPod/blob/main/Firebase/Images/FirebaseAuth3.png" width="750">
+
+Enable the Email/Password sign-in provider.
 
 <img src="https://github.com/XenonNgo/ProjectStudyPod/blob/main/Firebase/Images/Border.png" width="750">
 
@@ -51,43 +59,74 @@ We will be using Authentication & Realtime Database for this project.
 
 <img src="https://github.com/XenonNgo/ProjectStudyPod/blob/main/Firebase/Images/FirebaseRTDB.png" width="750">
 
+Create database with Realtime Database.
+
 <img src="https://github.com/XenonNgo/ProjectStudyPod/blob/main/Firebase/Images/Border.png" width="750">
 
 <img src="https://github.com/XenonNgo/ProjectStudyPod/blob/main/Firebase/Images/FirebaseRTDB2.png" width="750">
+
+Select a Realtime Database location. <br>
+In this example, we will be using United States (us-central1) for the database location.
 
 <img src="https://github.com/XenonNgo/ProjectStudyPod/blob/main/Firebase/Images/Border.png" width="750">
 
 <img src="https://github.com/XenonNgo/ProjectStudyPod/blob/main/Firebase/Images/FirebaseRTDB3.png" width="750">
 
+Select "Start in test mode" for security rules.
+
 <img src="https://github.com/XenonNgo/ProjectStudyPod/blob/main/Firebase/Images/Border.png" width="750">
 
 <img src="https://github.com/XenonNgo/ProjectStudyPod/blob/main/Firebase/Images/FirebaseRTDB4.png" width="750">
 
+Navigate to "Rules" in Realtime Database. <br>
+Replace the rules with the code below.
+
 ```
 {
   "rules": {
-    ".read": "auth.uid != null && auth.token.email_verified === true",
-    ".write": "auth.uid != null && auth.token.email_verified === true",
     "connections": {
       "value1": {
+    		".read": "auth.uid != null",
+    		".write": "auth.uid != null",
         ".validate": "newData.val() <= 1 && newData.val() >= 0"
+      },
+      "$others": {
+    		".read": "auth.uid != null",
+    		".write": "auth.uid != null" 
       }
     },
     "door": {
       "int": {
+    		".read": "auth.uid != null",
+    		".write": "auth.uid != null",
         ".validate": "newData.val() <= 1 && newData.val() >= 0"
+      },
+      "value1": {
+        ".read": false,
+        ".write": "auth.uid != null"
       }
     },
     "users": {
       "$uid": {
         "value2": {
+        	".read": "$uid === auth.uid",
+					".write": "$uid === auth.uid",
           ".validate": "newData.val() <= 3 && newData.val() >= 1"
-        }
+        },
+        "$others": {
+        	".read": false,
+          ".write": "$uid === auth.uid"
+        }, 
       }
     }
   }
 }
 ```
+
+WARNING
+> The security rules provided above are the minimum requirements for the system to function, and includes baseline security measures. <br>
+> Remember to configure secure Realtime Database rules before system deployment. <br>
+> Some examples include "newData.exists()" to prevent deletion of data, and "auth.token.email_verified === true" to prevent unverified users from performing read/write operations.
 
 <img src="https://github.com/XenonNgo/ProjectStudyPod/blob/main/Firebase/Images/Border.png" width="750">
 
