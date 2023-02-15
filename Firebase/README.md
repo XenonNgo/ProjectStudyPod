@@ -182,6 +182,50 @@ Create a new folder named public
 
 <img src="https://github.com/XenonNgo/ProjectStudyPod/blob/main/Firebase/Images/FirebaseHosting.png" width="750">
 
-Copy all files in the Web App directory to the public directory.
+Copy all files in the Web App folder to the public folder
+
+<img src="https://github.com/XenonNgo/ProjectStudyPod/blob/main/Firebase/Images/Border.png" width="750">
+
+<img src="https://github.com/XenonNgo/ProjectStudyPod/blob/main/Firebase/Images/FirebaseHosting3.png" width="750">
+
+Open command prompt and run the code below
+
+```
+npm install -g firebase-tools
+```
+
+<img src="https://github.com/XenonNgo/ProjectStudyPod/blob/main/Firebase/Images/Border.png" width="750">
+
+<img src="" width="750">
+
+Change directory to the path shown above and run the codes below
+
+```
+firebase login
+```
+
+```
+firebase init
+```
+
+<img src="https://github.com/XenonNgo/ProjectStudyPod/blob/main/Firebase/Images/Border.png" width="750">
+
+<img src="https://github.com/XenonNgo/ProjectStudyPod/blob/main/Firebase/Images/FirebaseHosting5.png" width="750">
+
+<img src="https://github.com/XenonNgo/ProjectStudyPod/blob/main/Firebase/Images/FirebaseHosting8.png" width="750">
+
+Follow the configurations shown above
+
+<img src="https://github.com/XenonNgo/ProjectStudyPod/blob/main/Firebase/Images/Border.png" width="750">
+
+<img src="https://github.com/XenonNgo/ProjectStudyPod/blob/main/Firebase/Images/FirebaseHosting7.png" width="750">
+
+Run the code below
+
+```
+firebase deploy
+```
+
+Your web app will be accessible at the hosting URL when deployed successfully
 
 <img src="https://github.com/XenonNgo/ProjectStudyPod/blob/main/Firebase/Images/Border.png" width="750">
