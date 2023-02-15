@@ -134,16 +134,23 @@ WARNING
 
 <img src="https://github.com/XenonNgo/ProjectStudyPod/blob/main/Firebase/Images/FirebaseConfig.png" width="750">
 
-Navigate to Project Overview
+Navigate to project overview to setup your web app.
 
 <img src="https://github.com/XenonNgo/ProjectStudyPod/blob/main/Firebase/Images/Border.png" width="750">
 
 <img src="https://github.com/XenonNgo/ProjectStudyPod/blob/main/Firebase/Images/FirebaseConfig2.png" width="750">
 
+Give your web app a name and register. <br>
+We will be setting up Firebase Hosting later.
+
 <img src="https://github.com/XenonNgo/ProjectStudyPod/blob/main/Firebase/Images/Border.png" width="750">
 
 <img src="https://github.com/XenonNgo/ProjectStudyPod/blob/main/Firebase/Images/FirebaseConfig3.png" width="750">
 
+Copy the firebaseConfig to notepad.
+
 <img src="https://github.com/XenonNgo/ProjectStudyPod/blob/main/Firebase/Images/Border.png" width="750">
+
+Download the Web App folder
 
 # Firebase Hosting
