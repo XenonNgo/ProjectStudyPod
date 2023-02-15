@@ -15,3 +15,10 @@ auth.user.password = "<user auth password>"; //set user password to authenticate
  Change these for set up
 
 **<h1>User Guide<h1>** <br/>
+1. Download the following libraries: <br/>
+Used Libraries: <br />
+https://github.com/mobizt/ESP-Mail-Client <br />
+https://github.com/madhephaestus/ESP32Servo <br />
+https://github.com/mobizt/Firebase-ESP-Client <br />
+ 
+2. Download the .ino file and edit the following lines: <br/>
