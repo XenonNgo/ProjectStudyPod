@@ -14,7 +14,7 @@ auth.user.password = "<user auth password>"; //set user password to authenticate
  
  Change these for set up
 
-**<h1>User Guide<h1>** <br/>
+**<h1>User Guide<h1>** <h1/><br/>
 <p>
 1. Download the following libraries: <br/>
 Used Libraries: <br />
