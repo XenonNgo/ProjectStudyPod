@@ -86,19 +86,19 @@ Replace the rules with the code below.
   "rules": {
     "connections": {
       "value1": {
-    		".read": "auth.uid != null",
-    		".write": "auth.uid != null",
+    	".read": "auth.uid != null",
+    	".write": "auth.uid != null",
         ".validate": "newData.val() <= 1 && newData.val() >= 0"
       },
       "$others": {
-    		".read": "auth.uid != null",
-    		".write": "auth.uid != null" 
+    	".read": "auth.uid != null",
+    	".write": "auth.uid != null" 
       }
     },
     "door": {
       "int": {
-    		".read": "auth.uid != null",
-    		".write": "auth.uid != null",
+    	".read": "auth.uid != null",
+    	".write": "auth.uid != null",
         ".validate": "newData.val() <= 1 && newData.val() >= 0"
       },
       "value1": {
@@ -109,12 +109,12 @@ Replace the rules with the code below.
     "users": {
       "$uid": {
         "value2": {
-        	".read": "$uid === auth.uid",
-					".write": "$uid === auth.uid",
+          ".read": "$uid === auth.uid",
+	  ".write": "$uid === auth.uid",
           ".validate": "newData.val() <= 3 && newData.val() >= 1"
         },
         "$others": {
-        	".read": false,
+          ".read": false,
           ".write": "$uid === auth.uid"
         }, 
       }
