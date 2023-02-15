@@ -16,13 +16,20 @@ In this example, we will be naming our project as "Firebase Setup".
 
 <img src="https://github.com/XenonNgo/ProjectStudyPod/blob/main/Firebase/Images/FirebaseAnalytics.png" width="375">
 
+Enable Google Analytics for the project.
+
 <img src="https://github.com/XenonNgo/ProjectStudyPod/blob/main/Firebase/Images/Border.png" width="750">
 
 <img src="https://github.com/XenonNgo/ProjectStudyPod/blob/main/Firebase/Images/FirebaseAnalytics2.png" width="375">
 
+Choose Default Account for Firebase and create the project.
+
 <img src="https://github.com/XenonNgo/ProjectStudyPod/blob/main/Firebase/Images/Border.png" width="750">
 
 <img src="https://github.com/XenonNgo/ProjectStudyPod/blob/main/Firebase/Images/Firebase.png" width="375">
+
+Navigate to build under product categories on the left. <br>
+We will be using Authentication & Realtime Database for this project.
 
 <img src="https://github.com/XenonNgo/ProjectStudyPod/blob/main/Firebase/Images/Border.png" width="750">
 
