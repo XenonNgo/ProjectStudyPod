@@ -78,7 +78,7 @@ Select "Start in test mode" for security rules.
 
 <img src="https://github.com/XenonNgo/ProjectStudyPod/blob/main/Firebase/Images/FirebaseRTDB4.png" width="750">
 
-Navigate to "Rules" in Realtime Database. <br>
+Navigate to rules in Realtime Database. <br>
 Replace the rules with the code below.
 
 ```
@@ -133,6 +133,8 @@ WARNING
 **Step 4: Setup Web App**
 
 <img src="https://github.com/XenonNgo/ProjectStudyPod/blob/main/Firebase/Images/FirebaseConfig.png" width="750">
+
+Navigate to Project Overview
 
 <img src="https://github.com/XenonNgo/ProjectStudyPod/blob/main/Firebase/Images/Border.png" width="750">
 
