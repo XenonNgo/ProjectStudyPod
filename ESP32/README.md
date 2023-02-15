@@ -13,3 +13,5 @@ auth.user.email = "<user auth email>"; //set user email to authenticate <br />
 auth.user.password = "<user auth password>"; //set user password to authenticate <br />
  
  Change these for set up
+
+**<h1>User Guide<h1>** <br/>
