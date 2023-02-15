@@ -196,7 +196,7 @@ npm install -g firebase-tools
 
 <img src="https://github.com/XenonNgo/ProjectStudyPod/blob/main/Firebase/Images/Border.png" width="750">
 
-<img src="" width="750">
+<img src="https://github.com/XenonNgo/ProjectStudyPod/blob/main/Firebase/Images/FirebaseHosting4.png" width="750">
 
 Change directory to the path shown above and run the codes below
 
@@ -227,5 +227,3 @@ firebase deploy
 ```
 
 Your web app will be accessible at the hosting URL when deployed successfully
-
-<img src="https://github.com/XenonNgo/ProjectStudyPod/blob/main/Firebase/Images/Border.png" width="750">
