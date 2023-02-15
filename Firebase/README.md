@@ -1,5 +1,5 @@
 # Setting Up Firebase Authentication, Realtime Database & Hosting
-**Step 1: Create a Firebase Project**
+## Step 1: Create a Firebase Project
 
 <img src="https://github.com/XenonNgo/ProjectStudyPod/blob/main/Firebase/Images/FirebaseTitle.jpeg" width="375">
 
@@ -33,7 +33,7 @@ We will be using Authentication, Realtime Database & Hosting for this project
 
 <img src="https://github.com/XenonNgo/ProjectStudyPod/blob/main/Firebase/Images/Border.png" width="750">
 
-**Step 2: Setup Authentication**
+## Step 2: Setup Authentication
 
 <img src="https://github.com/XenonNgo/ProjectStudyPod/blob/main/Firebase/Images/FirebaseAuth.png" width="750">
 
@@ -55,7 +55,7 @@ Enable the Email/Password sign-in provider
 
 <img src="https://github.com/XenonNgo/ProjectStudyPod/blob/main/Firebase/Images/Border.png" width="750">
 
-**Step 3: Setup Realtime Database**
+## Step 3: Setup Realtime Database
 
 <img src="https://github.com/XenonNgo/ProjectStudyPod/blob/main/Firebase/Images/FirebaseRTDB.png" width="750">
 
@@ -131,7 +131,7 @@ WARNING!
 
 <img src="https://github.com/XenonNgo/ProjectStudyPod/blob/main/Firebase/Images/Border.png" width="750">
 
-**Step 4: Setup Web App**
+## Step 4: Setup Web App
 
 <img src="https://github.com/XenonNgo/ProjectStudyPod/blob/main/Firebase/Images/FirebaseConfig.png" width="750">
 
@@ -168,9 +168,20 @@ Open the config.js file with Visual Studio Code or equivalent <br>
 
 <img src="https://github.com/XenonNgo/ProjectStudyPod/blob/main/Firebase/Images/FirebaseWebApp3.png" width="750">
 
-Replace the code shown above with the firebaseConfig that you copied to your notepad earlier <br>
+Replace the code shown above with the firebaseConfig that you copied to your notepad earlier
 
 <img src="https://github.com/XenonNgo/ProjectStudyPod/blob/main/Firebase/Images/Border.png" width="750">
 
-**Step 5: Setup Hosting**
+## Step 5: Setup Hosting
 
+<img src="https://github.com/XenonNgo/ProjectStudyPod/blob/main/Firebase/Images/FirebaseHosting2.png" width="750">
+
+Create a new folder named public
+
+<img src="https://github.com/XenonNgo/ProjectStudyPod/blob/main/Firebase/Images/Border.png" width="750">
+
+<img src="https://github.com/XenonNgo/ProjectStudyPod/blob/main/Firebase/Images/FirebaseHosting.png" width="750">
+
+Copy all files in the Web App directory to the public directory.
+
+<img src="https://github.com/XenonNgo/ProjectStudyPod/blob/main/Firebase/Images/Border.png" width="750">
