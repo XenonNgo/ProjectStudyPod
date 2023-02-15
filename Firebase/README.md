@@ -3,9 +3,14 @@
 
 <img src="https://github.com/XenonNgo/ProjectStudyPod/blob/main/Firebase/Images/FirebaseTitle.jpeg" width="375">
 
+Go to Firebase Console and create a new project.
+
 <img src="https://github.com/XenonNgo/ProjectStudyPod/blob/main/Firebase/Images/Border.png" width="750">
 
 <img src="https://github.com/XenonNgo/ProjectStudyPod/blob/main/Firebase/Images/FirebaseName.png" width="375">
+
+Give your project a name. <br>
+In this example, we will be naming our project as "Firebase Setup".
 
 <img src="https://github.com/XenonNgo/ProjectStudyPod/blob/main/Firebase/Images/Border.png" width="750">
 
